@@ -1,0 +1,18 @@
+@import "antd/dist/reset.css";
+
+.__initial {
+  height: 100vh;
+  img {
+    width: 30px;
+  }
+  span {
+    margin-top: 10px;
+  }
+}
+
+.ant-upload > div {
+  border: 1px dashed #424242 !important;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+}
