@@ -1,3 +1,5 @@
+import "./app.scss";
+
 import { ConfigProvider } from "antd";
 import { observer } from "mobx-react-lite";
 import { gstate } from "./global";

@@ -1,0 +1,18 @@
+@media (max-width: 576px) {
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  table th {
+    white-space: nowrap;
+    min-width: 80px !important;
+    text-align: center;
+  }
+
+  table td {
+    text-align: center;
+    white-space: nowrap;
+    min-width: 80px !important;
+  }
+}

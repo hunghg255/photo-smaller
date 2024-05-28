@@ -51,6 +51,23 @@ import { toJS } from "mobx";
 import { Compare } from "@/components/Compare";
 import { useDebounceFn } from "ahooks";
 import { Mimes } from "@/mimes";
+import classNames from "classnames";
+
+export function FluentOptions24Filled() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="#f8f7f7"
+        d="M8.75 13.5a3.25 3.25 0 0 1 3.163 2.5h9.337a.75.75 0 0 1 .102 1.493l-.102.007h-9.337a3.251 3.251 0 0 1-6.326 0H2.75a.75.75 0 0 1-.102-1.493L2.75 16h2.837a3.25 3.25 0 0 1 3.163-2.5m6.5-9.5a3.25 3.25 0 0 1 3.163 2.5h2.837a.75.75 0 0 1 .102 1.493L21.25 8h-2.837a3.251 3.251 0 0 1-6.326 0H2.75a.75.75 0 0 1-.102-1.493L2.75 6.5h9.337A3.25 3.25 0 0 1 15.25 4"
+      ></path>
+    </svg>
+  );
+}
 
 /**
  * 获取当前语言字符串
@@ -281,6 +298,7 @@ function getColumns(token: GlobalToken, disabled: boolean) {
 
 const Home = observer(() => {
   const { token } = theme.useToken();
+  const [show, setShow] = useState(false);
 
   const disabled = homeState.hasTaskRunning();
   const columns = getColumns(token, disabled);
@@ -331,7 +349,13 @@ const Home = observer(() => {
     mainContent = (
       <>
         <Flex align="stretch" vertical className={style.content}>
-          <Flex align="center" justify="space-between" className={style.menu}>
+          <Flex
+            align="center"
+            justify="space-between"
+            className={style.menu}
+            wrap={"wrap"}
+            gap={10}
+          >
             <Space>
               <Upload
                 itemRender={() => null}
@@ -429,7 +453,11 @@ const Home = observer(() => {
             <ProgressHint />
           </Flex>
         </Flex>
-        <div className={style.side}>
+        <div
+          className={classNames(style.side, {
+            [style.sideActive]: show,
+          })}
+        >
           <Flex justify="space-between" align="center">
             <Popover
               placement="bottom"
@@ -453,6 +481,7 @@ const Home = observer(() => {
                   homeState.tempOption = { ...DefaultCompressOption };
                   homeState.option = { ...DefaultCompressOption };
                   homeState.reCompress();
+                  setShow(false);
                 }}
               >
                 {gstate.locale?.optionPannel?.resetBtn}
@@ -464,6 +493,7 @@ const Home = observer(() => {
                 onClick={() => {
                   homeState.option = toJS(homeState.tempOption);
                   homeState.reCompress();
+                  setShow(false);
                 }}
               >
                 {gstate.locale?.optionPannel?.confirmBtn}
@@ -474,6 +504,10 @@ const Home = observer(() => {
             <CompressOption />
           </div>
         </div>
+
+        <button className={style.btnMenu} onClick={() => setShow(!show)}>
+          <FluentOptions24Filled />
+        </button>
       </>
     );
   }
