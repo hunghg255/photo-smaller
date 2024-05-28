@@ -26,10 +26,10 @@ If you want to independently deploy this project on your own server, the followi
 
 ```bash
 # Build docker image from Dockerfile
-docker build -t photomaller .
+docker build -t photosmaller .
 
 # Start a container
-docker run -p 3001:3001 -d photomaller
+docker run -p 3001:3001 -d photosmaller
 ```
 
 Now you can access the project via http://127.0.0.1:3001. If you want your project to be accessible to everyone, you need to prepare a domain name pointing to your local machine, and then proxy it to port 3001 of this machine, through a reverse proxy server like nginx.

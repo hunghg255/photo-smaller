@@ -408,7 +408,7 @@ const Home = observer(() => {
                       level: 6,
                     },
                   });
-                  createDownload("photomaller.zip", result);
+                  createDownload("photosmaller.zip", result);
                   gstate.loading = false;
                 }}
               >
